@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Sync
 {
@@ -29,7 +30,25 @@ namespace Sync
             request.AddQueryParameter("Skip", skip);
             request.AddQueryParameter("Take", take);
 
-            var body = new ContactQueryRequest();
+            var body = new ContactQueryRequest()
+            {
+                Groups = new List<Group>() 
+                {
+                    new Group()
+                    {
+                        Conditions = new List<Condition>()
+                        {
+                            new Condition()
+                            {
+                                Parameter = "state",
+                                Operator = "in",
+                                Values = new List<string>() { "AZ" }
+                            }
+                        }
+                    }
+                }
+            };
+
             request.AddJsonBody(body);
 
             var response = await _restClient.PostAsync<PagedResult<AbbreviatedContact>>(request);

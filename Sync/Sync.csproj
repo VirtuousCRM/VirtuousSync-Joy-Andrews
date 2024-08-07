@@ -81,10 +81,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbbreviatedContact.cs" />
+    <Compile Include="Models\AbbreviatedContact.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="ContactQueryRequest.cs" />
-    <Compile Include="PagedResult.cs" />
+    <Compile Include="Models\ContactQueryRequest.cs" />
+    <Compile Include="Models\PagedResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VirtuousService.cs" />
