@@ -1,8 +1,9 @@
 ﻿using RestSharp;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Sync.Models;
 
-namespace Sync
+namespace Sync.Services
 {
     /// <summary>
     /// API Docs found at https://docs.virtuoussoftware.com/
@@ -11,8 +12,13 @@ namespace Sync
     {
         private readonly RestClient _restClient;
 
-        public VirtuousService(IConfiguration configuration) 
+        /// <summary>
+        /// This construtor method initializes rest client for API call
+        /// </summary>
+        public VirtuousService() 
         {
+            var configuration = new Configuration();
+
             var apiBaseUrl = configuration.GetValue("VirtuousApiBaseUrl");
             var apiKey = configuration.GetValue("VirtuousApiKey");
 
@@ -24,6 +30,15 @@ namespace Sync
             _restClient = new RestClient(options);
         }
 
+        /// <summary>
+        /// This method retrieves contacts from the state of AZ
+        /// by calling Virtuous API
+        /// </summary>
+        /// <param name="skip">skip query parameter for Virtuous API</param>
+        /// <param name="take">take query parameter for Virtuous API</param>
+        /// <returns>
+        /// List of abbreviated contacts
+        /// </returns>
         public async Task<PagedResult<AbbreviatedContact>> GetContactsAsync(int skip, int take)
         {
             var request = new RestRequest("/api/Contact/Query", Method.Post);
