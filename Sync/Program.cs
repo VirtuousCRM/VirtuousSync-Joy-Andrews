@@ -32,15 +32,8 @@ namespace Sync
             string connString = @"Data Source =" + datasource + "; Initial Catalog ="
                 + database + "; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
 
-            SqlConnection conn = new SqlConnection(connString);
             try
             {
-                Console.WriteLine("Openning Connection ...");
-
-                conn.Open();
-
-                Console.WriteLine("Connection successful!");
-
                 StringBuilder strBuilder = new StringBuilder();
                 strBuilder.Append("INSERT INTO AbbreviatedContact (Id, Name, ContactType, ContactName, Address, Email, Phone) VALUES ");
 
@@ -49,7 +42,7 @@ namespace Sync
                     var contacts = await virtuousService.GetContactsAsync(skip, take);
                     skip += take;
 
-                    foreach(var contact in contacts.List)
+                    foreach (var contact in contacts.List)
                     {
                         strBuilder.Append("('" + contact.Id + "', '" + contact.Name.Replace("'", "''")
                             + "', '" + contact.ContactType + "', '" + contact.ContactName.Replace("'", "''")
@@ -63,9 +56,18 @@ namespace Sync
                 string sqlQuery = strBuilder.ToString();
                 sqlQuery = sqlQuery.Remove(sqlQuery.Length - 2);
                 Console.WriteLine(sqlQuery);
+
+                using (var conn = new SqlConnection(connString))
                 using (SqlCommand command = new SqlCommand(sqlQuery, conn))
                 {
+                    Console.WriteLine("Openning Connection ...");
+
+                    conn.Open();
+
+                    Console.WriteLine("Connection successful!");
+
                     command.ExecuteNonQuery();
+
                     Console.WriteLine("Query Executed.");
                 }
 
@@ -75,7 +77,7 @@ namespace Sync
                 Console.WriteLine("Error: " + e.Message);
             }
 
-            Console.Read();
+            Environment.Exit(0);
         }
     }
 }
