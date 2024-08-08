@@ -11,16 +11,16 @@ namespace Sync.Services
     internal class VirtuousService
     {
         private readonly RestClient _restClient;
-
+        private readonly IConfiguration _config;
         /// <summary>
         /// This construtor method initializes rest client for API call
         /// </summary>
-        public VirtuousService() 
+        public VirtuousService(IConfiguration configuration) 
         {
-            var configuration = new Configuration();
+            _config = configuration;
 
-            var apiBaseUrl = configuration.GetValue("VirtuousApiBaseUrl");
-            var apiKey = configuration.GetValue("VirtuousApiKey");
+            var apiBaseUrl = _config.GetValue("VirtuousApiBaseUrl");
+            var apiKey = _config.GetValue("VirtuousApiKey");
 
             var options = new RestClientOptions(apiBaseUrl)
             {

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "9Oxa7n9mVVAf7ijJ6mRTTqKTvI44LjZa+k4xbndZg2LiWIS8d3r2komoDZvXlqB5/mWPAd+ahHfrZ1KmoNGwRA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\joyle\\source\\repos\\Virtuous\\WebApi\\WebApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\joyle\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512",
+    "C:\\Users\\joyle\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
+  "logs": []
+}

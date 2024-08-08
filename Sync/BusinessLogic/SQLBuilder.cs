@@ -9,6 +9,12 @@ namespace Sync.BusinessLogic
 {
     internal class SQLBuilder
     {
+        private readonly IConfiguration _config;
+
+        public SQLBuilder(IConfiguration configuration)
+        {
+            _config = configuration;
+        }
         /// <summary>
         /// This method creates an insert sql query string from contacts 
         /// retrieved from Virtuous API
@@ -18,7 +24,7 @@ namespace Sync.BusinessLogic
         /// </returns>
         public async Task<string> CreateSQLQueryString()
         {
-            var virtuousService = new VirtuousService();
+            var virtuousService = new VirtuousService(_config);
 
             var skip = 0;
             var take = 100;

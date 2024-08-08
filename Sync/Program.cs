@@ -16,10 +16,11 @@ namespace Sync
         {
             try
             {
-                var sqlBuilder = new SQLBuilder();
+                var configuration = new Configuration();
+                var sqlBuilder = new SQLBuilder(configuration);
                 string sqlQueryString = await sqlBuilder.CreateSQLQueryString();
                 Console.WriteLine(sqlQueryString);
-                var databaseService = new DatabaseService();
+                var databaseService = new DatabaseService(configuration);
                 databaseService.RunQuery(sqlQueryString);
             }
             catch (Exception e)
