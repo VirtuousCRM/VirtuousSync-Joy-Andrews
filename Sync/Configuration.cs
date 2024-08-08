@@ -13,12 +13,13 @@ namespace Sync
 
     internal class Configuration : IConfiguration
     {
-        public Configuration(string apiKey) 
+        public Configuration() 
         {
             Values = new Dictionary<string, string>()
             {
                 { "VirtuousApiBaseUrl", "https://api.virtuoussoftware.com" },
-                { "VirtuousApiKey", apiKey }
+                { "VirtuousApiKey", "REPLACE_WITH_API_KEY_PROVIDED" },
+                { "ConnectionString", @"Data Source =(localdb)\MSSQLLocalDB; Initial Catalog =Virtuous; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False" }
             };
         }
 
